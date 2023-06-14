@@ -1,17 +1,17 @@
-version: '3.1'
-
+version: '3'
 services:
+  nifi:
+    image: apache/nifi:latest
+    container_name: nifi
+    
 
-  mongo:
-    image: mongo
-    restart: always
     ports:
-      - 27017:27017
+      # HTTP
+      - 9191:9191
+
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: 12345
-    volumes:
-      - ./mongodb_data:/data/db
+      NIFI_WEB_HTTP_PORT: 9191
+    
     networks:
       - backend
 networks:
